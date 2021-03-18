@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+  <!-- IMPORT PROPERTIES -->
+  <property resource="application.properties" />
+
+  <!-- MY DB APPENDER -->
+  <appender name="MyDBAppenderName"
+            class="com.ivoronline.springboot_log_logback_config_xml_db_custom.log.MyDBAppender">
+    <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
+      <url>         ${spring.datasource.url}               </url>
+      <user>        ${spring.datasource.username}          </user>
+      <password>    ${spring.datasource.password}          </password>
+      <driverClass> ${spring.datasource.driver-class-name} </driverClass>
+    </connectionSource>
+  </appender>
+
+  <!-- LOGGER -->
+  <logger name="com.ivoronline.springboot_log_logback_config_xml_db_custom.controllers" level="INFO">
+      <appender-ref ref="MyDBAppenderName"/>
+  </logger>
+
+</configuration>
