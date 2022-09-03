@@ -15,7 +15,7 @@ public class MyDBAppender extends DBAppender {
   //=======================================================================================
   @Override
   protected String getInsertSQL() {
-   return "INSERT INTO TRANSACTION (event_id, timestamp, level, message) VALUES (DEFAULT, ?, ?, ?)";
+   return "INSERT INTO TRANSACTION (event_id, timestmp, message, level) VALUES (DEFAULT, ?, ?, ?)";
   }
 
   //=======================================================================================
@@ -30,9 +30,9 @@ public class MyDBAppender extends DBAppender {
    String message = event.getMessage();
 
    //PREPARE STATEMENT
-   preparedStatement.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
-   preparedStatement.setString   (2, level  );
-   preparedStatement.setString   (3, message);
+    preparedStatement.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
+    preparedStatement.setString   (2, message);
+    preparedStatement.setString   (3, level  );
 
    //EXECUTE PREPARED STATEMENT
    preparedStatement.executeUpdate();
